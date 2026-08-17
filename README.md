@@ -1,0 +1,135 @@
+# Rock Paper Scissors Game
+
+A full-stack Rock Paper Scissors game developed using Java, Spring Boot, MySQL, HTML, CSS, and JavaScript.
+
+## Features
+
+- Play Rock Paper Scissors against the computer
+- Random computer choice generation
+- Automatic winner calculation
+- Current game score tracking
+- Draw tracking
+- Current game history
+- Previous game history
+- Search previous games
+- Filter games by result
+- Reset current game
+- MySQL database persistence
+- REST APIs
+- Swagger API documentation
+- Responsive web interface
+
+## Technologies Used
+
+### Backend
+- Java 25
+- Spring Boot
+- Spring Web
+- Spring Data JPA
+- Hibernate
+- Maven
+
+### Database
+- MySQL
+
+### Frontend
+- HTML
+- CSS
+- JavaScript
+
+### API Documentation
+- Swagger / OpenAPI
+
+## Project Structure
+
+src/main/java
+└── com.example.rockpaperscissor
+    ├── controller
+    │   └── GameController.java
+    ├── entity
+    │   └── Game.java
+    ├── repository
+    │   └── GameRepository.java
+    ├── service
+    │   └── GameService.java
+    └── RockpaperscissorApplication.java
+
+src/main/resources
+├── static
+│   ├── index.html
+│   ├── previous.html
+│   ├── script.js
+│   └── style.css
+└── application.properties
+
+## REST API Endpoints
+
+### Play Game
+
+POST /api/game/play
+
+Request body:
+
+"ROCK"
+
+or
+
+"PAPER"
+
+or
+
+"SCISSORS"
+
+### Get Score
+
+GET /api/game/score
+
+### Get Current Game History
+
+GET /api/game/history
+
+### Get Previous Games
+
+GET /api/game/previous
+
+### Reset Game
+
+DELETE /api/game/reset
+
+## How to Run
+
+1. Make sure MySQL is installed and running.
+2. Configure the database in `application.properties`.
+3. Open the project in Eclipse or another Java IDE.
+4. Update the Maven project.
+5. Run `RockpaperscissorApplication.java`.
+6. Open the browser.
+
+Application URL:
+
+http://localhost:8080
+
+## Swagger API Documentation
+
+Swagger UI:
+
+http://localhost:8080/swagger-ui/index.html
+
+## Game Flow
+
+1. User selects Rock, Paper, or Scissors.
+2. The request is sent to the Spring Boot REST API.
+3. The computer randomly selects a move.
+4. The backend determines the winner.
+5. The result is stored in MySQL.
+6. The score is updated.
+7. The result is displayed on the frontend.
+
+## Future Enhancements
+
+- User login and registration
+- Player profiles
+- Online multiplayer
+- Leaderboard
+- Game statistics dashboard
+- Deployment to cloud

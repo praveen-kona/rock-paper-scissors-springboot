@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <title>Rock Paper Scissors</title>
+
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+
+<body>
+
+    <!-- =========================================
+         MAIN GAME CONTAINER
+         ========================================= -->
+
+    <div class="game-container">
+
+        <!-- TITLE -->
+
+        <h1>
+            ROCK PAPER SCISSORS
+        </h1>
+
+
+        <!-- SUBTITLE -->
+
+        <p class="subtitle">
+            Choose your move
+        </p>
+
+
+        <!-- =====================================
+             GAME BUTTONS
+             ===================================== -->
+
+        <div class="choices">
+
+
+            <!-- ROCK -->
+
+            <button
+                class="choice-button"
+                onclick="playGame('ROCK')">
+
+                🪨 Rock
+
+            </button>
+
+
+            <!-- PAPER -->
+
+            <button
+                class="choice-button"
+                onclick="playGame('PAPER')">
+
+                📄 Paper
+
+            </button>
+
+
+            <!-- SCISSORS -->
+
+            <button
+                class="choice-button"
+                onclick="playGame('SCISSORS')">
+
+                ✂️ Scissors
+
+            </button>
+
+
+            <!-- GAME HISTORY -->
+
+            <button
+                class="action-button history-button"
+                onclick="showHistory()">
+
+                📜 Game History
+
+            </button>
+
+        </div>
+
+
+        <!-- =====================================
+             SECONDARY BUTTONS
+             ===================================== -->
+
+        <div class="secondary-buttons">
+
+
+            <!-- PREVIOUS GAMES -->
+
+            <button
+                class="action-button previous-button"
+                onclick="openPreviousGames()">
+
+                🕘 Previous Games
+
+            </button>
+
+
+            <!-- RESET GAME -->
+
+            <button
+                class="action-button reset-button"
+                onclick="resetGame()">
+
+                🔄 Reset Game
+
+            </button>
+
+        </div>
+
+
+        <!-- =====================================
+             CURRENT RESULT
+             ===================================== -->
+
+        <div class="result-box">
+
+
+            <!-- USER CHOICE -->
+
+            <p id="userChoice">
+
+                Your Choice: -
+
+            </p>
+
+
+            <!-- COMPUTER CHOICE -->
+
+            <p id="computerChoice">
+
+                Computer Choice: -
+
+            </p>
+
+
+            <!-- RESULT -->
+
+            <p id="result">
+
+                Result: -
+
+            </p>
+
+
+            <!-- SCORE -->
+
+            <p id="score">
+
+                Score: 0 - 0
+
+            </p>
+
+
+            <!-- DRAWS -->
+
+            <p id="draws">
+
+                Draws: 0
+
+            </p>
+
+
+        </div>
+
+
+        <!-- =====================================
+             GAME HISTORY
+             ===================================== -->
+
+        <div
+            id="historySection"
+            style="display: none;">
+
+
+            <h2>
+                GAME HISTORY
+            </h2>
+
+
+            <div id="history">
+
+                Loading history...
+
+            </div>
+
+
+        </div>
+
+
+    </div>
+
+
+    <!-- =========================================
+         RESET CONFIRMATION MODAL
+         ========================================= -->
+
+    <div
+        id="resetModal"
+        class="reset-modal">
+
+
+        <div class="reset-modal-content">
+
+
+            <!-- WARNING ICON -->
+
+            <div class="reset-modal-icon">
+
+                ⚠️
+
+            </div>
+
+
+            <!-- TITLE -->
+
+            <h2>
+
+                Reset Game?
+
+            </h2>
+
+
+            <!-- MESSAGE -->
+
+            <p>
+
+                Are you sure you want
+                to reset the game?
+
+            </p>
+
+
+            <!-- BUTTONS -->
+
+            <div class="reset-modal-buttons">
+
+
+                <!-- CANCEL -->
+
+                <button
+                    class="cancel-reset"
+                    onclick="closeResetModal()">
+
+                    Cancel
+
+                </button>
+
+
+                <!-- CONFIRM -->
+
+                <button
+                    class="confirm-reset"
+                    onclick="confirmReset()">
+
+                    Yes, Reset
+
+                </button>
+
+
+            </div>
+
+
+        </div>
+
+
+    </div>
+
+
+    <!-- =========================================
+         JAVASCRIPT
+         ========================================= -->
+
+    <script src="script.js"></script>
+
+
+</body>
+
+</html>

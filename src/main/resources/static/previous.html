@@ -1,0 +1,1367 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Previous Games</title>
+
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+
+<body>
+
+<div class="game-container previous-page">
+
+
+    <!-- =========================================
+         HEADER
+         ========================================= -->
+
+    <h1>🕘 PREVIOUS GAMES</h1>
+
+    <p class="subtitle">
+        Your complete Rock Paper Scissors history
+    </p>
+
+
+    <!-- =========================================
+         STATISTICS
+         ========================================= -->
+
+    <div class="previous-stats">
+
+
+        <div class="stat-card">
+
+            <div class="stat-icon">
+                🎮
+            </div>
+
+            <div id="totalGames"
+                 class="stat-number">
+                0
+            </div>
+
+            <div class="stat-label">
+                Total Games
+            </div>
+
+        </div>
+
+
+        <div class="stat-card user-stat">
+
+            <div class="stat-icon">
+                🏆
+            </div>
+
+            <div id="userWins"
+                 class="stat-number">
+                0
+            </div>
+
+            <div class="stat-label">
+                You Won
+            </div>
+
+        </div>
+
+
+        <div class="stat-card computer-stat">
+
+            <div class="stat-icon">
+                💻
+            </div>
+
+            <div id="computerWins"
+                 class="stat-number">
+                0
+            </div>
+
+            <div class="stat-label">
+                Computer Won
+            </div>
+
+        </div>
+
+
+        <div class="stat-card draw-stat">
+
+            <div class="stat-icon">
+                🤝
+            </div>
+
+            <div id="drawGames"
+                 class="stat-number">
+                0
+            </div>
+
+            <div class="stat-label">
+                Draws
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- =========================================
+         PERFORMANCE
+         ========================================= -->
+
+    <div class="performance-section">
+
+        <h2>
+            📊 PERFORMANCE
+        </h2>
+
+
+        <div class="rate-item">
+
+            <div class="rate-header">
+
+                <span>
+                    🏆 Your Win Rate
+                </span>
+
+                <span id="userRate">
+                    0%
+                </span>
+
+            </div>
+
+
+            <div class="progress-bar">
+
+                <div id="userProgress"
+                     class="progress-fill progress-user">
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <div class="rate-item">
+
+            <div class="rate-header">
+
+                <span>
+                    💻 Computer Win Rate
+                </span>
+
+                <span id="computerRate">
+                    0%
+                </span>
+
+            </div>
+
+
+            <div class="progress-bar">
+
+                <div id="computerProgress"
+                     class="progress-fill progress-computer">
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <div class="rate-item">
+
+            <div class="rate-header">
+
+                <span>
+                    🤝 Draw Rate
+                </span>
+
+                <span id="drawRate">
+                    0%
+                </span>
+
+            </div>
+
+
+            <div class="progress-bar">
+
+                <div id="drawProgress"
+                     class="progress-fill progress-draw">
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <div id="performanceMessage"
+             class="performance-message">
+
+            🎮 Play some games to see your performance.
+
+        </div>
+
+    </div>
+
+
+
+    <!-- =========================================
+         BACK BUTTON
+         ========================================= -->
+
+    <div class="previous-actions">
+
+        <button class="back-button"
+                onclick="goBackToGame()">
+
+            ← Back to Game
+
+        </button>
+
+    </div>
+
+
+
+    <!-- =========================================
+         PREVIOUS GAME HISTORY
+         ========================================= -->
+
+    <div class="previous-page-card">
+
+
+        <div class="history-heading">
+
+            <h2>
+                📜 Previous Game History
+            </h2>
+
+
+            <span id="gameCount">
+                0 Games
+            </span>
+
+        </div>
+
+
+
+        <!-- =====================================
+             SEARCH + FILTER
+             ===================================== -->
+
+        <div class="history-controls">
+
+
+            <div class="search-box">
+
+                <span>
+                    🔍
+                </span>
+
+
+                <input
+                    type="text"
+                    id="searchInput"
+                    placeholder="Search by game ID or choice..."
+                    oninput="applyFilters()">
+
+            </div>
+
+
+
+            <select
+                id="resultFilter"
+                onchange="applyFilters()">
+
+                <option value="ALL">
+                    All Results
+                </option>
+
+                <option value="USER_WON">
+                    🏆 You Won
+                </option>
+
+                <option value="COMPUTER_WON">
+                    💻 Computer Won
+                </option>
+
+                <option value="DRAW">
+                    🤝 Draw
+                </option>
+
+            </select>
+
+
+
+            <button
+                class="clear-filter-button"
+                onclick="clearFilters()">
+
+                ✕ Clear
+
+            </button>
+
+        </div>
+
+
+
+        <!-- =====================================
+             FILTER STATUS
+             ===================================== -->
+
+        <div id="filterStatus"
+             class="filter-status">
+
+            Showing all previous games
+
+        </div>
+
+
+
+        <!-- =====================================
+             GAME HISTORY
+             ===================================== -->
+
+        <div id="previousGames">
+
+            <div class="loading">
+
+                ⏳ Loading previous games...
+
+            </div>
+
+        </div>
+
+
+
+        <!-- =====================================
+             PAGINATION
+             ===================================== -->
+
+        <div id="pagination"
+             class="pagination">
+
+            <button
+                id="previousPageButton"
+                class="pagination-button"
+                onclick="previousPage()">
+
+                ← Previous
+
+            </button>
+
+
+            <span id="pageInfo"
+                  class="page-info">
+
+                Page 1 of 1
+
+            </span>
+
+
+            <button
+                id="nextPageButton"
+                class="pagination-button"
+                onclick="nextPage()">
+
+                Next →
+
+            </button>
+
+        </div>
+
+
+    </div>
+
+
+</div>
+
+
+
+<script>
+
+
+// ==================================================
+// GLOBAL VARIABLES
+// ==================================================
+
+let allGames = [];
+
+let filteredGames = [];
+
+let currentPage = 1;
+
+const gamesPerPage = 10;
+
+
+
+// ==================================================
+// BACK TO GAME
+// ==================================================
+
+function goBackToGame() {
+
+    window.location.href = "/";
+
+}
+
+
+
+// ==================================================
+// CHOICE ICON
+// ==================================================
+
+function getChoiceIcon(choice) {
+
+    if (choice === "ROCK") {
+
+        return "🪨";
+
+    }
+
+    if (choice === "PAPER") {
+
+        return "📄";
+
+    }
+
+    if (choice === "SCISSORS") {
+
+        return "✂️";
+
+    }
+
+    return "";
+
+}
+
+
+
+// ==================================================
+// RESULT TEXT
+// ==================================================
+
+function getResultText(result) {
+
+    if (result === "USER_WON") {
+
+        return "🏆 YOU WON";
+
+    }
+
+    if (result === "COMPUTER_WON") {
+
+        return "💻 COMPUTER WON";
+
+    }
+
+    if (result === "DRAW") {
+
+        return "🤝 DRAW";
+
+    }
+
+    return result;
+
+}
+
+
+
+// ==================================================
+// RESULT CSS CLASS
+// ==================================================
+
+function getResultClass(result) {
+
+    if (result === "USER_WON") {
+
+        return "history-user-win";
+
+    }
+
+    if (result === "COMPUTER_WON") {
+
+        return "history-computer-win";
+
+    }
+
+    if (result === "DRAW") {
+
+        return "history-draw";
+
+    }
+
+    return "";
+
+}
+
+
+
+// ==================================================
+// LOAD PREVIOUS GAMES
+// ==================================================
+
+fetch("/api/game/previous")
+
+.then(response => {
+
+    if (!response.ok) {
+
+        throw new Error(
+            "Could not load previous games"
+        );
+
+    }
+
+    return response.json();
+
+})
+
+
+.then(games => {
+
+    allGames = games || [];
+
+    filteredGames = [...allGames];
+
+
+    // ==============================================
+    // CALCULATE STATISTICS
+    // ==============================================
+
+    let userWins = 0;
+
+    let computerWins = 0;
+
+    let draws = 0;
+
+
+    allGames.forEach(game => {
+
+        if (game.result === "USER_WON") {
+
+            userWins++;
+
+        }
+
+        else if (game.result === "COMPUTER_WON") {
+
+            computerWins++;
+
+        }
+
+        else if (game.result === "DRAW") {
+
+            draws++;
+
+        }
+
+    });
+
+
+    const totalGames = allGames.length;
+
+
+
+    // ==============================================
+    // DISPLAY STATISTICS
+    // ==============================================
+
+    document.getElementById(
+        "totalGames"
+    ).textContent = totalGames;
+
+
+    document.getElementById(
+        "userWins"
+    ).textContent = userWins;
+
+
+    document.getElementById(
+        "computerWins"
+    ).textContent = computerWins;
+
+
+    document.getElementById(
+        "drawGames"
+    ).textContent = draws;
+
+
+
+    // ==============================================
+    // CALCULATE RATES
+    // ==============================================
+
+    let userRate = 0;
+
+    let computerRate = 0;
+
+    let drawRate = 0;
+
+
+    if (totalGames > 0) {
+
+        userRate =
+            (userWins / totalGames) * 100;
+
+        computerRate =
+            (computerWins / totalGames) * 100;
+
+        drawRate =
+            (draws / totalGames) * 100;
+
+    }
+
+
+    userRate =
+        Math.round(userRate * 10) / 10;
+
+    computerRate =
+        Math.round(computerRate * 10) / 10;
+
+    drawRate =
+        Math.round(drawRate * 10) / 10;
+
+
+
+    // ==============================================
+    // DISPLAY RATES
+    // ==============================================
+
+    document.getElementById(
+        "userRate"
+    ).textContent =
+        userRate + "%";
+
+
+    document.getElementById(
+        "computerRate"
+    ).textContent =
+        computerRate + "%";
+
+
+    document.getElementById(
+        "drawRate"
+    ).textContent =
+        drawRate + "%";
+
+
+
+    // ==============================================
+    // PROGRESS BARS
+    // ==============================================
+
+    document.getElementById(
+        "userProgress"
+    ).style.width =
+        userRate + "%";
+
+
+    document.getElementById(
+        "computerProgress"
+    ).style.width =
+        computerRate + "%";
+
+
+    document.getElementById(
+        "drawProgress"
+    ).style.width =
+        drawRate + "%";
+
+
+
+    // ==============================================
+    // PERFORMANCE MESSAGE
+    // ==============================================
+
+    const performanceMessage =
+        document.getElementById(
+            "performanceMessage"
+        );
+
+
+    if (totalGames === 0) {
+
+        performanceMessage.textContent =
+            "🎮 No previous games yet.";
+
+    }
+
+    else if (userWins > computerWins) {
+
+        performanceMessage.textContent =
+            "🔥 You performed better than the computer!";
+
+    }
+
+    else if (computerWins > userWins) {
+
+        performanceMessage.textContent =
+            "💻 The computer is ahead. Time for a comeback!";
+
+    }
+
+    else {
+
+        performanceMessage.textContent =
+            "⚔️ It's an even match!";
+
+    }
+
+
+
+    // ==============================================
+    // ALWAYS START ON PAGE 1
+    // ==============================================
+
+    currentPage = 1;
+
+
+    updateFilterStatus();
+
+    displayGames();
+
+})
+
+
+.catch(error => {
+
+    console.error(error);
+
+
+    document.getElementById(
+        "previousGames"
+    ).innerHTML = `
+
+        <div class="error-message">
+
+            <div class="empty-icon">
+                ⚠️
+            </div>
+
+            <h3>
+                Unable to Load Previous Games
+            </h3>
+
+            <p>
+                Please refresh the page and try again.
+            </p>
+
+        </div>
+
+    `;
+
+
+    document.getElementById(
+        "gameCount"
+    ).textContent =
+        "0 Games";
+
+
+    document.getElementById(
+        "pagination"
+    ).style.display =
+        "none";
+
+});
+
+
+
+// ==================================================
+// APPLY SEARCH + FILTER
+// ==================================================
+
+function applyFilters() {
+
+    const searchValue =
+        document.getElementById(
+            "searchInput"
+        ).value
+        .trim()
+        .toUpperCase();
+
+
+    const resultValue =
+        document.getElementById(
+            "resultFilter"
+        ).value;
+
+
+    filteredGames =
+        allGames.filter(game => {
+
+
+            const searchMatch =
+
+                searchValue === "" ||
+
+                String(game.id)
+                    .includes(searchValue) ||
+
+                String(game.userChoice)
+                    .toUpperCase()
+                    .includes(searchValue) ||
+
+                String(game.computerChoice)
+                    .toUpperCase()
+                    .includes(searchValue);
+
+
+
+            const resultMatch =
+
+                resultValue === "ALL" ||
+
+                game.result === resultValue;
+
+
+            return searchMatch &&
+                   resultMatch;
+
+        });
+
+
+    // ----------------------------------------------
+    // RESET TO PAGE 1 AFTER FILTERING
+    // ----------------------------------------------
+
+    currentPage = 1;
+
+
+    updateFilterStatus();
+
+    displayGames();
+
+}
+
+
+
+// ==================================================
+// CLEAR FILTERS
+// ==================================================
+
+function clearFilters() {
+
+    document.getElementById(
+        "searchInput"
+    ).value = "";
+
+
+    document.getElementById(
+        "resultFilter"
+    ).value = "ALL";
+
+
+    filteredGames = [...allGames];
+
+    currentPage = 1;
+
+
+    updateFilterStatus();
+
+    displayGames();
+
+}
+
+
+
+// ==================================================
+// UPDATE FILTER STATUS
+// ==================================================
+
+function updateFilterStatus() {
+
+    const status =
+        document.getElementById(
+            "filterStatus"
+        );
+
+
+    const searchValue =
+        document.getElementById(
+            "searchInput"
+        ).value
+        .trim();
+
+
+    const resultValue =
+        document.getElementById(
+            "resultFilter"
+        ).value;
+
+
+    if (
+        searchValue === "" &&
+        resultValue === "ALL"
+    ) {
+
+        status.textContent =
+            "Showing all " +
+            allGames.length +
+            " previous games";
+
+        return;
+
+    }
+
+
+    status.textContent =
+        "Showing " +
+        filteredGames.length +
+        " of " +
+        allGames.length +
+        " previous games";
+
+}
+
+
+
+// ==================================================
+// DISPLAY GAMES
+// ==================================================
+
+function displayGames() {
+
+    const container =
+        document.getElementById(
+            "previousGames"
+        );
+
+
+    // ----------------------------------------------
+    // NO GAMES
+    // ----------------------------------------------
+
+    if (
+        !filteredGames ||
+        filteredGames.length === 0
+    ) {
+
+        document.getElementById(
+            "gameCount"
+        ).textContent =
+            "0 Games";
+
+
+        container.innerHTML = `
+
+            <div class="empty-message">
+
+                <div class="empty-icon">
+                    📜
+                </div>
+
+                <h3>
+                    No Previous Games Found
+                </h3>
+
+                <p>
+                    Reset a game first to move it here.
+                </p>
+
+            </div>
+
+        `;
+
+
+        document.getElementById(
+            "pagination"
+        ).style.display =
+            "none";
+
+
+        return;
+
+    }
+
+
+
+    // ----------------------------------------------
+    // GAME COUNT
+    // ----------------------------------------------
+
+    document.getElementById(
+        "gameCount"
+    ).textContent =
+
+        filteredGames.length +
+
+        (
+            filteredGames.length === 1
+                ? " Game"
+                : " Games"
+        );
+
+
+
+    // ----------------------------------------------
+    // SORT NEWEST FIRST
+    // ----------------------------------------------
+
+    const newestFirst =
+        [...filteredGames].sort(
+            (a, b) =>
+                Number(b.id) -
+                Number(a.id)
+        );
+
+
+
+    // ----------------------------------------------
+    // TOTAL PAGES
+    // ----------------------------------------------
+
+    const totalPages =
+        Math.max(
+            1,
+            Math.ceil(
+                newestFirst.length /
+                gamesPerPage
+            )
+        );
+
+
+
+    // ----------------------------------------------
+    // KEEP PAGE VALID
+    // ----------------------------------------------
+
+    if (currentPage < 1) {
+
+        currentPage = 1;
+
+    }
+
+
+    if (currentPage > totalPages) {
+
+        currentPage = totalPages;
+
+    }
+
+
+
+    // ----------------------------------------------
+    // PAGE START
+    // ----------------------------------------------
+
+    const startIndex =
+        (currentPage - 1) *
+        gamesPerPage;
+
+
+    const endIndex =
+        startIndex +
+        gamesPerPage;
+
+
+    const pageGames =
+        newestFirst.slice(
+            startIndex,
+            endIndex
+        );
+
+
+
+    // ----------------------------------------------
+    // CREATE TABLE
+    // ----------------------------------------------
+
+    let table = `
+
+        <div class="table-wrapper">
+
+            <table>
+
+                <thead>
+
+                    <tr>
+
+                        <th>
+                            ID
+                        </th>
+
+                        <th>
+                            Your Choice
+                        </th>
+
+                        <th>
+                            Computer Choice
+                        </th>
+
+                        <th>
+                            Result
+                        </th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+    `;
+
+
+
+    pageGames.forEach(game => {
+
+        table += `
+
+            <tr>
+
+                <td>
+                    #${game.id}
+                </td>
+
+
+                <td>
+
+                    <span class="choice-display">
+
+                        ${getChoiceIcon(
+                            game.userChoice
+                        )}
+
+                        <span>
+                            ${game.userChoice}
+                        </span>
+
+                    </span>
+
+                </td>
+
+
+                <td>
+
+                    <span class="choice-display">
+
+                        ${getChoiceIcon(
+                            game.computerChoice
+                        )}
+
+                        <span>
+                            ${game.computerChoice}
+                        </span>
+
+                    </span>
+
+                </td>
+
+
+                <td class="${getResultClass(
+                    game.result
+                )}">
+
+                    ${getResultText(
+                        game.result
+                    )}
+
+                </td>
+
+            </tr>
+
+        `;
+
+    });
+
+
+
+    table += `
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    `;
+
+
+    container.innerHTML = table;
+
+
+
+    // ----------------------------------------------
+    // UPDATE PAGINATION
+    // ----------------------------------------------
+
+    updatePagination(totalPages);
+
+}
+
+
+
+// ==================================================
+// UPDATE PAGINATION
+// ==================================================
+
+function updatePagination(totalPages) {
+
+    const pagination =
+        document.getElementById(
+            "pagination"
+        );
+
+
+    const previousButton =
+        document.getElementById(
+            "previousPageButton"
+        );
+
+
+    const nextButton =
+        document.getElementById(
+            "nextPageButton"
+        );
+
+
+    const pageInfo =
+        document.getElementById(
+            "pageInfo"
+        );
+
+
+    // ----------------------------------------------
+    // ONLY ONE PAGE
+    // ----------------------------------------------
+
+    if (totalPages <= 1) {
+
+        pagination.style.display =
+            "none";
+
+        pageInfo.textContent =
+            "Page 1 of 1";
+
+        return;
+
+    }
+
+
+    pagination.style.display =
+        "flex";
+
+
+    // ----------------------------------------------
+    // PAGE NUMBER
+    // ----------------------------------------------
+
+    pageInfo.textContent =
+        "Page " +
+        currentPage +
+        " of " +
+        totalPages;
+
+
+    // ----------------------------------------------
+    // PREVIOUS BUTTON
+    // ----------------------------------------------
+
+    previousButton.disabled =
+        currentPage === 1;
+
+
+    // ----------------------------------------------
+    // NEXT BUTTON
+    // ----------------------------------------------
+
+    nextButton.disabled =
+        currentPage === totalPages;
+
+}
+
+
+
+// ==================================================
+// PREVIOUS PAGE
+// ==================================================
+
+function previousPage() {
+
+    if (currentPage > 1) {
+
+        currentPage--;
+
+        displayGames();
+
+        scrollToHistory();
+
+    }
+
+}
+
+
+
+// ==================================================
+// NEXT PAGE
+// ==================================================
+
+function nextPage() {
+
+    const totalPages =
+        Math.max(
+            1,
+            Math.ceil(
+                filteredGames.length /
+                gamesPerPage
+            )
+        );
+
+
+    if (currentPage < totalPages) {
+
+        currentPage++;
+
+        displayGames();
+
+        scrollToHistory();
+
+    }
+
+}
+
+
+
+// ==================================================
+// SCROLL TO HISTORY
+// ==================================================
+
+function scrollToHistory() {
+
+    const historyCard =
+        document.querySelector(
+            ".previous-page-card"
+        );
+
+
+    if (historyCard) {
+
+        historyCard.scrollIntoView({
+
+            behavior: "smooth",
+
+            block: "start"
+
+        });
+
+    }
+
+}
+
+
+</script>
+
+
+</body>
+
+</html>
