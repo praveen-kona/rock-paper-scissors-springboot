@@ -197,3 +197,5 @@ https://rock-paper-scissors-springboot-production.up.railway.app/
 **Praveen Kona**
 
 Java Full Stack Developer
+
+Updated deployment configuration.
