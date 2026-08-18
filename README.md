@@ -199,3 +199,10 @@ https://rock-paper-scissors-springboot-production.up.railway.app/
 Java Full Stack Developer
 
 Updated deployment configuration.
+
+## Copyright
+
+Copyright © 2026 Praveen Kona. All Rights Reserved.
+
+This project and its source code may not be copied, modified, distributed, or used without prior written permission.
+
