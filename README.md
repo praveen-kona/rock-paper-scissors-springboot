@@ -198,7 +198,6 @@ https://rock-paper-scissors-springboot-production.up.railway.app/
 
 Java Full Stack Developer
 
-Updated deployment configuration.
 
 ## Copyright
 
